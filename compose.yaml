@@ -16,7 +16,7 @@ services:
       - 8080:8080
 
   registry:
-    image: registry:2.17.1
+    image: registry:2.7.1
     container_name: registry
     restart: always
     volumes:
