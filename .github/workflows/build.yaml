@@ -33,18 +33,6 @@ jobs:
           - name: centos-8
             image_name: os-packages-centos8
             package_name: kubeplay
-          - name: fedora-33
-            image_name: os-packages-fedora33
-            package_name: kubeplay
-          - name: fedora-34
-            image_name: os-packages-fedora34
-            package_name: kubeplay
-          - name: debian-9
-            image_name: os-packages-debian9
-            package_name: kubeplay
-          - name: debian-10
-            image_name: os-packages-debian10
-            package_name: kubeplay
           - name: ubuntu-1804
             image_name: os-packages-ubuntu1804
             package_name: kubeplay
