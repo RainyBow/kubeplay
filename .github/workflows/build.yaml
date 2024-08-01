@@ -52,7 +52,7 @@ jobs:
           ref: main
           fetch-depth: 0
           path: kubespray
-          repository: https://github.com/k8sli/kubespray
+          repository: k8sli/kubespray
 
       - name: Checkout os-packages repo
         uses: actions/checkout@v2
@@ -60,7 +60,7 @@ jobs:
           ref: main
           fetch-depth: 0
           path: os-packages
-          repository: https://github.com/k8sli/os-packages
+          repository: k8sli/os-packages
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
