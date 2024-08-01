@@ -18,7 +18,7 @@ env:
 
 jobs:
   build-package:
-    #if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
@@ -27,15 +27,6 @@ jobs:
           - name: os-packages
             image_name: os-packages-all-os
             package_name: resources
-          - name: centos-7
-            image_name: os-packages-centos7
-            package_name: kubeplay
-          - name: centos-8
-            image_name: os-packages-centos8
-            package_name: kubeplay
-          - name: ubuntu-1804
-            image_name: os-packages-ubuntu1804
-            package_name: kubeplay
           - name: ubuntu-2004
             image_name: os-packages-ubuntu2004
             package_name: kubeplay
