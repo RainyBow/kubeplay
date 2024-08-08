@@ -27,8 +27,8 @@ jobs:
           - name: os-packages
             image_name: os-packages-all-os
             package_name: resources
-          - name: ubuntu-2004
-            image_name: os-packages-ubuntu2004
+          - name: ubuntu-2204
+            image_name: os-packages-ubuntu2204
             package_name: kubeplay
     steps:
       - name: Checkout
