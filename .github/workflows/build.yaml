@@ -25,20 +25,9 @@ jobs:
       matrix:
         include:
 
-          - name: centos-7
-            image_name: os-packages-centos7
-            package_name: kubeplay
-          - name: centos-8
-            image_name: os-packages-centos8
-            package_name: kubeplay
+
           - name: ubuntu-2004
             image_name: os-packages-ubuntu2004
-            package_name: kubeplay
-          - name: ubuntu-2204
-            image_name: os-packages-ubuntu2204
-            package_name: kubeplay
-          - name: ubuntu-2304
-            image_name: os-packages-ubuntu2304
             package_name: kubeplay
 
 
@@ -71,7 +60,7 @@ jobs:
           ref: main
           fetch-depth: 0
           path: os-packages
-          repository: k8sli/os-packages
+          repository: RainyBow/os-packages
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
