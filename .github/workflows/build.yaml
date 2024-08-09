@@ -10,11 +10,11 @@ env:
   IMAGE_REGISTRY: "ghcr.io"
   REGISTRY_USER: "${{ github.repository_owner }}"
   REGISTRY_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  IMAGE_REPO: "ghcr.io/k8sli"
-  KUBESPRAY_IMAGE: "ghcr.io/k8sli/kubespray"
-  KUBEPLAY_IMAGE_REPO: "ghcr.io/k8sli/kubeplay"
-  KUBESPRAY_FILES_IMAGE: "ghcr.io/k8sli/kubespray-files"
-  KUBESPRAY_IMAGES_IMAGE: "ghcr.io/k8sli/kubespray-images"
+  IMAGE_REPO: "ghcr.io/${{ github.repository_owner }}"
+  KUBESPRAY_IMAGE: "ghcr.io/${{ github.repository_owner }}/kubespray"
+  KUBEPLAY_IMAGE_REPO: "ghcr.io/${{ github.repository_owner }}/kubeplay"
+  KUBESPRAY_FILES_IMAGE: "ghcr.io/${{ github.repository_owner }}/kubespray-files"
+  KUBESPRAY_IMAGES_IMAGE: "ghcr.io/${{ github.repository_owner }}/kubespray-images"
 
 jobs:
   build-package:
@@ -24,9 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: os-packages
-            image_name: os-packages-all-os
-            package_name: resources
+
           - name: centos-7
             image_name: os-packages-centos7
             package_name: kubeplay
@@ -36,7 +34,23 @@ jobs:
           - name: ubuntu-2004
             image_name: os-packages-ubuntu2004
             package_name: kubeplay
+          - name: ubuntu-2204
+            image_name: os-packages-ubuntu2204
+            package_name: kubeplay
+          - name: ubuntu-2304
+            image_name: os-packages-ubuntu2304
+            package_name: kubeplay
+
+
     steps:
+      - name: set env 
+        shell: bash
+        run: |
+          echo "IMAGE_REPO=$(echo ${{ env.IMAGE_REPO }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "KUBESPRAY_IMAGE=$(echo ${{ env.KUBESPRAY_IMAGE }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "KUBEPLAY_IMAGE_REPO=$(echo ${{ env.KUBEPLAY_IMAGE_REPO }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "KUBESPRAY_FILES_IMAGE=$(echo ${{ env.KUBESPRAY_FILES_IMAGE }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "KUBESPRAY_IMAGES_IMAGE=$(echo ${{ env.KUBESPRAY_IMAGES_IMAGE }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -46,7 +60,7 @@ jobs:
       - name: Checkout kubespray repo
         uses: actions/checkout@v2
         with:
-          ref: v2.25.0
+          ref: release-rainybow-v0.25.0
           fetch-depth: 0
           path: kubespray
           repository: RainyBow/kubespray
